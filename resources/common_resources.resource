@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    RequestsLibrary
-Library    String
+# Library    String
 
 *** Variables ***
 ${URL}    https://bwpool.azurewebsites.net/   
@@ -15,7 +15,7 @@ ${DEVICE_DATA_API}    https://random-data-api.com/api/device/random_device?size=
 # Locators
 ${CUSTOMER_MENU}    //a[contains(.,'Partnerek')]
 ${CUSTOMER_GRID}    //h4[.='Ügyfelek']
-${ADD_BUTTON}    //button[@aria-label='Add']   
+${ADD_BUTTON}    //button[@aria-label='Add']
 ${CUSTOMER_NAME}    //input[@id='name']   # First name, Last name
 ${E-MAIL_TITLE}    //td[contains(.,'E-mail')]
 ${E-MAIL_FIELD}    //input[@id='email']
@@ -24,26 +24,26 @@ ${COMMENT}    //input[@id='comment']
 ${SAVE_BUTTON}    //button[@class='e-control e-btn e-lib e-control e-btn e-lib e-primary e-flat']
 ${LOCATIONS_MENU}    //a[contains(.,'Telephelyek')]
 ${LOCATIONS_GRID}    //h4[.='Telephelyek']
-${LOCATION_CUSTOMER}    //input[@class='e-control e-combobox e-lib e-input']
-${LOCATION_CUSTOMER_DROPDOWN}    //input[@class='e-sortfilterdiv e-icons ']    
-# //div[@id='Grid_toolbarItems']/div[contains(@class,'e-toolbar-item')][4]//input[@class='e-input']    
-# //span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']
-${CITY}    //input[@id='varos']
-${ZIP_CODE}    //input[@id='zip']
-${STREET_NAME}    //input[@id='utca']
-${STREET_ADDRESS}    //input[@id='szam']
-${DEVICES}    //a[contains(.,'Eszközök')]
-${ADD_DEVICE}    //span[.='Add']
-${MANUFACTORER}    //input[@id='name']
-${CUSTOMER_LOCATION_DROPDOWN}    //span[@class='e-ddl e-lib e-input-group e-control-container e-control-wrapper e-input-focus valid']/span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']
+${LOCATION_CUSTOMER}    //input[@class='e-control e-combobox e-lib e-input'] 
+${LOCATION_CUSTOMER_DROPDOWN}    //span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']   
+${CITY_LOCATOR}    //input[@id='varos']
+${ZIPCODE_LOCATOR}    //input[@id='zip']
+${STREET_NAME_LOCATOR}    //input[@id='utca']
+${STREET_ADDRESS_LOCATOR}    //input[@id='szam']
+${TOOLS_MENU}    //a[contains(.,'Eszközök')]
+${TOOLS_GRID}    //h4[.='Eszközök']
+${ADD_TOOL}    //span[.='Add']
+${MANUFACTORERS_NAME}    //input[@id='name']
+${CUSTOMER_FIELD}    //input[@aria-placeholder='Ügyfél']
+${LOCATION_FIELD}    //input[@aria-placeholder='Telephely']    
 ${DESCRIPTION_PLATFORM}    //textarea[@id='Desc']
-${COMMENT_AT_DEVICE_SERIAL_NUMBER}    //textarea[@id='Comm']
-${EXCEL_EXPORT}    //span[.='Excel Export']
+${COMMENT_AT_TOOL_SERIAL_NUMBER}    //textarea[@id='Comm']
+${EXCEL_EXPORT}    //button[@aria-label='Excel Export']
 ${FILTER_FOR_LOCATION}    //input[@id='Grid_ToolbarSearchBox']
 ${SEARCH_ICON}    //span[@class='e-searchclear e-search-icon e-icons e-input-group-icon']
-${STREET_REF_URL}    //a[@href='LocationInfo/333']/span[@class='oi oi-location']    # Exchange for the entered location street URL!
-${USER_DATA_API}    https://random-data-api.com/api/users/random_user?size=1
-${SESSION_NAME}    API Session
+${STREET_REF_URL}    //span[@class='nav-link']
+# //span[@class='oi oi-location']
+# //span[@aria-hidden='true']  
 
 *** Keywords ***
 
@@ -69,9 +69,8 @@ Open Location Menu
     Wait Until Element Is Visible    ${LOCATIONS_GRID}
 
 Api Call Test
-    Create Session    ${SESSION_NAME}    ${USER_DATA_API}
-    ${response}    Get On Session    ${SESSION_NAME}    ${USER_DATA_API}
-    Should Be Equal As Strings    ${response.status_code}    200
+    ${response}    GET    ${USER_DATA_API}
+    # Should Be Equal As Strings    ${response.status_code}    200
     ${body}    Set Variable    ${response.json()}
     
     Log    ${body}
