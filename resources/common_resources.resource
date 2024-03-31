@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    RequestsLibrary
+Library    String
 
 *** Variables ***
 ${URL}    https://bwpool.azurewebsites.net/   
@@ -24,7 +25,9 @@ ${SAVE_BUTTON}    //button[@class='e-control e-btn e-lib e-control e-btn e-lib e
 ${LOCATIONS_MENU}    //a[contains(.,'Telephelyek')]
 ${LOCATIONS_GRID}    //h4[.='Telephelyek']
 ${LOCATION_CUSTOMER}    //input[@class='e-control e-combobox e-lib e-input']
-${LOCATION_CUSTOMER_DROPDOWN}    //span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']
+${LOCATION_CUSTOMER_DROPDOWN}    //input[@class='e-sortfilterdiv e-icons ']    
+# //div[@id='Grid_toolbarItems']/div[contains(@class,'e-toolbar-item')][4]//input[@class='e-input']    
+# //span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']
 ${CITY}    //input[@id='varos']
 ${ZIP_CODE}    //input[@id='zip']
 ${STREET_NAME}    //input[@id='utca']

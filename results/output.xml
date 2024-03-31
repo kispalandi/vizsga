@@ -1,193 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-03-31T21:12:26.011124" rpa="false" schemaversion="5">
+<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-03-31T21:48:12.120417" rpa="false" schemaversion="5">
 <suite id="s1" name="Bwp Tool Project" source="C:\MUNKA\bwp_tool_project">
 <suite id="s1-s1" name="Tests" source="C:\MUNKA\bwp_tool_project\tests">
 <suite id="s1-s1-s1" name="Bwp Test" source="C:\MUNKA\bwp_tool_project\tests\bwp_test.robot">
-<test id="s1-s1-s1-t1" name="Navigate To Customer Menu" line="27">
+<test id="s1-s1-s1-t1" name="Navigate To Customer Menu" line="33">
 <kw name="Open Browser To Login Page" owner="common_resources">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:26.626802" level="INFO">Opening browser 'Chrome' to base url 'https://bwpool.azurewebsites.net/'.</msg>
-<msg time="2024-03-31T21:12:31.460681" level="WARN">Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event): operation timed out</msg>
+<msg time="2024-03-31T21:48:12.704830" level="INFO">Opening browser 'Chrome' to base url 'https://bwpool.azurewebsites.net/'.</msg>
 <arg>${URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-03-31T21:12:26.626802" elapsed="9.890376"/>
+<status status="PASS" start="2024-03-31T21:48:12.703831" elapsed="5.276199"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:36.529556" level="INFO">Page title is 'BWP Index'.</msg>
+<msg time="2024-03-31T21:48:17.993022" level="INFO">Page title is 'BWP Index'.</msg>
 <arg>BWP Index</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2024-03-31T21:12:36.517178" elapsed="0.012378"/>
+<status status="PASS" start="2024-03-31T21:48:17.981029" elapsed="0.013503"/>
 </kw>
-<status status="PASS" start="2024-03-31T21:12:26.624800" elapsed="9.904756"/>
+<status status="PASS" start="2024-03-31T21:48:12.699830" elapsed="5.295707"/>
 </kw>
 <kw name="Navigate To Customer Menu">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:36.532683" level="INFO">Opening url 'https://bwpool.azurewebsites.net//Customer'</msg>
-<arg>${menu_url}</arg>
+<msg time="2024-03-31T21:48:18.006530" level="INFO">Opening url 'https://bwpool.azurewebsites.net//Customer'</msg>
+<arg>${URL}/Customer</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2024-03-31T21:12:36.531556" elapsed="0.515231"/>
+<status status="PASS" start="2024-03-31T21:48:18.006530" elapsed="0.500404"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:37.047787" level="INFO">Clicking element '//a[contains(.,'Partnerek')]'.</msg>
+<msg time="2024-03-31T21:48:18.510932" level="INFO">Clicking element '//a[contains(.,'Partnerek')]'.</msg>
 <arg>${CUSTOMER_MENU}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:37.046787" elapsed="0.698670"/>
+<status status="PASS" start="2024-03-31T21:48:18.507934" elapsed="0.514992"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${CUSTOMER_GRID}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-03-31T21:12:37.745457" elapsed="0.071667"/>
+<status status="PASS" start="2024-03-31T21:48:19.022926" elapsed="0.046502"/>
 </kw>
-<arg>${URL}/Customer</arg>
-<status status="PASS" start="2024-03-31T21:12:36.530557" elapsed="1.286567"/>
+<status status="PASS" start="2024-03-31T21:48:18.005531" elapsed="1.063897"/>
 </kw>
-<status status="PASS" start="2024-03-31T21:12:26.621680" elapsed="11.196584"/>
+<status status="PASS" start="2024-03-31T21:48:12.697831" elapsed="6.372596"/>
 </test>
-<test id="s1-s1-s1-t2" name="Api Call Test" line="31">
+<test id="s1-s1-s1-t2" name="Api Call Test" line="37">
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2024-03-31T21:12:37.853438" level="INFO">Creating Session using : alias=API Session, url=https://random-data-api.com/api/users/random_user?size=1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2024-03-31T21:48:19.074426" level="INFO">Creating Session using : alias=API Session, url=https://random-data-api.com/api/users/random_user?size=1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
 <arg>${SESSION_NAME}</arg>
 <arg>${USER_DATA_API}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2024-03-31T21:12:37.851280" elapsed="0.007414"/>
+<status status="PASS" start="2024-03-31T21:48:19.073426" elapsed="0.003000"/>
 </kw>
 <kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2024-03-31T21:12:38.985561" level="INFO">GET Request : url=https://random-data-api.com/api/users/random_user?size=1 
+<msg time="2024-03-31T21:48:19.588675" level="INFO">GET Request : url=https://random-data-api.com/api/users/random_user?size=1 
  path_url=/api/users/random_user?size=1 
  headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg time="2024-03-31T21:12:38.985561" level="INFO">GET Response : url=https://random-data-api.com/api/users/random_user?size=1 
+<msg time="2024-03-31T21:48:19.589673" level="INFO">GET Response : url=https://random-data-api.com/api/users/random_user?size=1 
  status=200, reason=OK 
- headers={'Alt-Svc': 'h3=":443"; ma=2592000', 'Cache-Control': 'max-age=0, private, must-revalidate', 'Content-Encoding': 'gzip', 'Content-Type': 'application/json; charset=utf-8', 'Etag': 'W/"82d40a4cb853181b996fdcd9119b0fbb"', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Server': 'Caddy', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains', 'Vary': 'Origin, Accept-Encoding', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'SAMEORIGIN', 'X-Permitted-Cross-Domain-Policies': 'none', 'X-Request-Id': '34a918ac-2213-4319-9593-040d7cafb7ed', 'X-Runtime': '0.012097', 'X-Xss-Protection': '0', 'Date': 'Sun, 31 Mar 2024 19:12:38 GMT', 'Content-Length': '578'} 
- body=[{"id":5653,"uid":"cb7840f8-814d-4429-b4b1-1fbca337de80","password":"QBs3PimG4Y","first_name":"Wyatt","last_name":"Hane","username":"wyatt.hane","email":"wyatt.hane@email.com","avatar":"https://robohash.org/aliasautvoluptatibus.png?size=300x300\u0026set=set1","gender":"Female","phone_number":"+230 794.841.4596","social_insurance_number":"221374234","date_of_birth":"1982-07-06","employment":{"title":"Real-Estate Liaison","key_skill":"Fast learner"},"address":{"city":"Kreigerchester","street_name":"Walter Path","street_address":"95077 West Trail","zip_code":"84528-3150","state":"North Dakota","country":"United States","coordinates":{"lat":51.40610513652564,"lng":-61.53614612527002}},"credit_card":{"cc_number":"4392-5269-7509-2786"},"subscription":{"plan":"Free Trial","status":"Blocked","payment_method":"Cheque","term":"Full subscription"}}] 
+ headers={'Alt-Svc': 'h3=":443"; ma=2592000', 'Cache-Control': 'max-age=0, private, must-revalidate', 'Content-Encoding': 'gzip', 'Content-Type': 'application/json; charset=utf-8', 'Etag': 'W/"e03746a64000eae3bb7f141a6ce6b1e4"', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Server': 'Caddy', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains', 'Vary': 'Origin, Accept-Encoding', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'SAMEORIGIN', 'X-Permitted-Cross-Domain-Policies': 'none', 'X-Request-Id': '72d36a25-3c10-4616-935f-03b5361295bb', 'X-Runtime': '0.008248', 'X-Xss-Protection': '0', 'Date': 'Sun, 31 Mar 2024 19:48:19 GMT', 'Content-Length': '583'} 
+ body=[{"id":8325,"uid":"cdc06f48-3fa0-45e2-9b5a-95d418b4ae42","password":"OJQyPIq8ot","first_name":"Jonah","last_name":"Davis","username":"jonah.davis","email":"jonah.davis@email.com","avatar":"https://robohash.org/eumodiopossimus.png?size=300x300\u0026set=set1","gender":"Genderqueer","phone_number":"+236 492.885.6498 x5286","social_insurance_number":"291210565","date_of_birth":"1976-07-02","employment":{"title":"Banking Designer","key_skill":"Self-motivated"},"address":{"city":"South Clayton","street_name":"Wiegand Stravenue","street_address":"539 Frami River","zip_code":"14906-1990","state":"Missouri","country":"United States","coordinates":{"lat":37.71822461773445,"lng":-176.9752802472544}},"credit_card":{"cc_number":"6771-8943-8172-1208"},"subscription":{"plan":"Essential","status":"Pending","payment_method":"Apple Pay","term":"Annual"}}] 
  </msg>
-<msg time="2024-03-31T21:12:38.986560" level="INFO">C:\Users\Andi\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'random-data-api.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+<msg time="2024-03-31T21:48:19.589673" level="INFO">C:\Users\Andi\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'random-data-api.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
   warnings.warn(</msg>
-<msg time="2024-03-31T21:12:38.995173" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-03-31T21:48:19.598289" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>${SESSION_NAME}</arg>
 <arg>${USER_DATA_API}</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2024-03-31T21:12:37.863230" elapsed="1.132948"/>
+<status status="PASS" start="2024-03-31T21:48:19.079423" elapsed="0.519865"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-03-31T21:12:38.999171" level="INFO">Argument types are:
+<msg time="2024-03-31T21:48:19.602287" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-03-31T21:12:38.997173" elapsed="0.002997"/>
+<status status="PASS" start="2024-03-31T21:48:19.600289" elapsed="0.002996"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.003168" level="INFO">${body} = [{'id': 5653, 'uid': 'cb7840f8-814d-4429-b4b1-1fbca337de80', 'password': 'QBs3PimG4Y', 'first_name': 'Wyatt', 'last_name': 'Hane', 'username': 'wyatt.hane', 'email': 'wyatt.hane@email.com', 'avatar': ...</msg>
+<msg time="2024-03-31T21:48:19.607283" level="INFO">${body} = [{'id': 8325, 'uid': 'cdc06f48-3fa0-45e2-9b5a-95d418b4ae42', 'password': 'OJQyPIq8ot', 'first_name': 'Jonah', 'last_name': 'Davis', 'username': 'jonah.davis', 'email': 'jonah.davis@email.com', 'avatar...</msg>
 <var>${body}</var>
 <arg>${response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.001170" elapsed="0.002997"/>
+<status status="PASS" start="2024-03-31T21:48:19.604285" elapsed="0.003997"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.006169" level="INFO">[{'id': 5653, 'uid': 'cb7840f8-814d-4429-b4b1-1fbca337de80', 'password': 'QBs3PimG4Y', 'first_name': 'Wyatt', 'last_name': 'Hane', 'username': 'wyatt.hane', 'email': 'wyatt.hane@email.com', 'avatar': 'https://robohash.org/aliasautvoluptatibus.png?size=300x300&amp;set=set1', 'gender': 'Female', 'phone_number': '+230 794.841.4596', 'social_insurance_number': '221374234', 'date_of_birth': '1982-07-06', 'employment': {'title': 'Real-Estate Liaison', 'key_skill': 'Fast learner'}, 'address': {'city': 'Kreigerchester', 'street_name': 'Walter Path', 'street_address': '95077 West Trail', 'zip_code': '84528-3150', 'state': 'North Dakota', 'country': 'United States', 'coordinates': {'lat': 51.40610513652564, 'lng': -61.53614612527002}}, 'credit_card': {'cc_number': '4392-5269-7509-2786'}, 'subscription': {'plan': 'Free Trial', 'status': 'Blocked', 'payment_method': 'Cheque', 'term': 'Full subscription'}}]</msg>
+<msg time="2024-03-31T21:48:19.612097" level="INFO">[{'id': 8325, 'uid': 'cdc06f48-3fa0-45e2-9b5a-95d418b4ae42', 'password': 'OJQyPIq8ot', 'first_name': 'Jonah', 'last_name': 'Davis', 'username': 'jonah.davis', 'email': 'jonah.davis@email.com', 'avatar': 'https://robohash.org/eumodiopossimus.png?size=300x300&amp;set=set1', 'gender': 'Genderqueer', 'phone_number': '+236 492.885.6498 x5286', 'social_insurance_number': '291210565', 'date_of_birth': '1976-07-02', 'employment': {'title': 'Banking Designer', 'key_skill': 'Self-motivated'}, 'address': {'city': 'South Clayton', 'street_name': 'Wiegand Stravenue', 'street_address': '539 Frami River', 'zip_code': '14906-1990', 'state': 'Missouri', 'country': 'United States', 'coordinates': {'lat': 37.71822461773445, 'lng': -176.9752802472544}}, 'credit_card': {'cc_number': '6771-8943-8172-1208'}, 'subscription': {'plan': 'Essential', 'status': 'Pending', 'payment_method': 'Apple Pay', 'term': 'Annual'}}]</msg>
 <arg>${body}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.005169" elapsed="0.001000"/>
+<status status="PASS" start="2024-03-31T21:48:19.611282" elapsed="0.001863"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.011826" level="INFO">${first_name} = Wyatt</msg>
+<msg time="2024-03-31T21:48:19.615143" level="INFO">${first_name} = Jonah</msg>
 <var>${first_name}</var>
 <arg>${body}[0][first_name]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.010821" elapsed="0.002005"/>
+<status status="PASS" start="2024-03-31T21:48:19.614143" elapsed="0.002000"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.014825" level="INFO">${last_name} = Hane</msg>
+<msg time="2024-03-31T21:48:19.619141" level="INFO">${last_name} = Davis</msg>
 <var>${last_name}</var>
 <arg>${body}[0][last_name]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.013825" elapsed="0.001999"/>
+<status status="PASS" start="2024-03-31T21:48:19.618141" elapsed="0.001000"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.018823" level="INFO">${email} = wyatt.hane@email.com</msg>
+<msg time="2024-03-31T21:48:19.624138" level="INFO">${email} = jonah.davis@email.com</msg>
 <var>${email}</var>
 <arg>${body}[0][email]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.016823" elapsed="0.002000"/>
+<status status="PASS" start="2024-03-31T21:48:19.622140" elapsed="0.001998"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-03-31T21:12:39.020820" level="INFO">${id} = 5653</msg>
+<msg time="2024-03-31T21:48:19.627078" level="INFO">${id} = 8325</msg>
 <var>${id}</var>
 <arg>${body}[0][id]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.019822" elapsed="0.000998"/>
+<status status="PASS" start="2024-03-31T21:48:19.626072" elapsed="0.004419"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ADD_BUTTON}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-03-31T21:48:19.631492" elapsed="0.039553"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:39.026073" level="INFO">Clicking button '//button[@aria-label='Add']'.</msg>
+<msg time="2024-03-31T21:48:19.673045" level="INFO">Clicking button '//button[@aria-label='Add']'.</msg>
 <arg>${ADD_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.023726" elapsed="0.141134"/>
+<status status="PASS" start="2024-03-31T21:48:19.672045" elapsed="0.102887"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${CUSTOMER_NAME}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-03-31T21:12:39.165865" elapsed="2.970050"/>
+<status status="PASS" start="2024-03-31T21:48:19.775932" elapsed="3.697870"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:42.136916" level="INFO">Typing text 'Wyatt Hane' into text field '//input[@id='name']'.</msg>
+<msg time="2024-03-31T21:48:23.475802" level="INFO">Typing text 'Jonah Davis' into text field '//input[@id='name']'.</msg>
 <arg>${CUSTOMER_NAME}</arg>
 <arg>${first_name} ${last_name}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:42.136916" elapsed="0.214856"/>
+<status status="PASS" start="2024-03-31T21:48:23.474802" elapsed="0.203929"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:42.352771" level="INFO">Typing text 'wyatt.hane@email.com' into text field '//input[@id='email']'.</msg>
+<msg time="2024-03-31T21:48:23.679732" level="INFO">Typing text 'jonah.davis@email.com' into text field '//input[@id='email']'.</msg>
 <arg>${E-MAIL_FIELD}</arg>
 <arg>${email}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:42.351772" elapsed="0.186766"/>
+<status status="PASS" start="2024-03-31T21:48:23.678731" elapsed="0.229190"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:42.539539" level="INFO">Typing text '5653' into text field '//input[@id='comment']'.</msg>
+<msg time="2024-03-31T21:48:23.908920" level="INFO">Typing text '8325' into text field '//input[@id='comment']'.</msg>
 <arg>${COMMENT}</arg>
 <arg>${id}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:42.539539" elapsed="0.183639"/>
+<status status="PASS" start="2024-03-31T21:48:23.907921" elapsed="0.219967"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-03-31T21:12:42.725183" level="INFO">Clicking button '//button[@class='e-control e-btn e-lib e-control e-btn e-lib e-primary e-flat']'.</msg>
+<msg time="2024-03-31T21:48:24.129887" level="INFO">Clicking button '//button[@class='e-control e-btn e-lib e-control e-btn e-lib e-primary e-flat']'.</msg>
 <arg>${SAVE_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-03-31T21:12:42.724181" elapsed="0.113715"/>
+<status status="PASS" start="2024-03-31T21:48:24.128888" elapsed="0.108585"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${CUSTOMER_GRID}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-03-31T21:12:42.838895" elapsed="0.032833"/>
+<status status="PASS" start="2024-03-31T21:48:24.240471" elapsed="0.037064"/>
 </kw>
-<status status="PASS" start="2024-03-31T21:12:37.849281" elapsed="5.023447"/>
+<status status="PASS" start="2024-03-31T21:48:19.071426" elapsed="5.207108"/>
 </test>
-<status status="PASS" start="2024-03-31T21:12:26.100940" elapsed="16.773786"/>
+<test id="s1-s1-s1-t3" name="Fill Customer Location Form" line="62">
+<kw name="Open Location Menu" owner="common_resources">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-03-31T21:48:24.283532" level="INFO">Clicking element '//a[contains(.,'Telephelyek')]'.</msg>
+<arg>${LOCATIONS_MENU}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-03-31T21:48:24.283532" elapsed="1.469424"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOCATIONS_GRID}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-03-31T21:48:25.753955" elapsed="0.684397"/>
+</kw>
+<status status="PASS" start="2024-03-31T21:48:24.282532" elapsed="2.155820"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ADD_BUTTON}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-03-31T21:48:26.466584" elapsed="0.040918"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-03-31T21:48:26.565999" level="INFO">Clicking button '//button[@aria-label='Add']'.</msg>
+<arg>${ADD_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-03-31T21:48:26.565000" elapsed="0.253596"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOCATION_CUSTOMER}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-03-31T21:48:26.824592" elapsed="2.116121"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2024-03-31T21:48:28.941711" level="INFO">Selecting options from selection list '//input[@class='e-sortfilterdiv e-icons ']' by label //input[@id='name'].</msg>
+<msg time="2024-03-31T21:48:29.108929" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-03-31T21:48:29.109928" level="FAIL">List with locator '//input[@class='e-sortfilterdiv e-icons ']' not found.</msg>
+<arg>${LOCATION_CUSTOMER_DROPDOWN}</arg>
+<arg>${customer_name}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="FAIL" start="2024-03-31T21:48:28.941711" elapsed="0.178423">List with locator '//input[@class='e-sortfilterdiv e-icons ']' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${CITY}</arg>
+<arg>${city}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.121164" elapsed="0.000999"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${ZIP_CODE}</arg>
+<arg>${zip_code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.124160" elapsed="0.001000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${STREET_NAME}</arg>
+<arg>${street_name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.126160" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${STREET_ADDRESS}</arg>
+<arg>${street_address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.134830" elapsed="0.001004"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${SAVE_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.136833" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOCATIONS_GRID}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2024-03-31T21:48:29.137831" elapsed="0.001000"/>
+</kw>
+<status status="FAIL" start="2024-03-31T21:48:24.280535" elapsed="4.858296">List with locator '//input[@class='e-sortfilterdiv e-icons ']' not found.</status>
+</test>
+<status status="FAIL" start="2024-03-31T21:48:12.174985" elapsed="16.967845"/>
 </suite>
-<status status="PASS" start="2024-03-31T21:12:26.092944" elapsed="16.786780"/>
+<status status="FAIL" start="2024-03-31T21:48:12.159361" elapsed="16.986467"/>
 </suite>
-<status status="PASS" start="2024-03-31T21:12:26.023117" elapsed="16.861835"/>
+<status status="FAIL" start="2024-03-31T21:48:12.128716" elapsed="17.021111"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="2" fail="0" skip="0" id="s1" name="Bwp Tool Project">Bwp Tool Project</stat>
-<stat pass="2" fail="0" skip="0" id="s1-s1" name="Tests">Bwp Tool Project.Tests</stat>
-<stat pass="2" fail="0" skip="0" id="s1-s1-s1" name="Bwp Test">Bwp Tool Project.Tests.Bwp Test</stat>
+<stat pass="2" fail="1" skip="0" id="s1" name="Bwp Tool Project">Bwp Tool Project</stat>
+<stat pass="2" fail="1" skip="0" id="s1-s1" name="Tests">Bwp Tool Project.Tests</stat>
+<stat pass="2" fail="1" skip="0" id="s1-s1-s1" name="Bwp Test">Bwp Tool Project.Tests.Bwp Test</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2024-03-31T21:12:31.460681" level="WARN">Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event): operation timed out</msg>
 </errors>
 </robot>

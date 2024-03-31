@@ -18,15 +18,21 @@ Test Teardown
     Close All Browsers
 
 Navigate To Customer Menu
-    [Arguments]    ${menu_url}
-    Go To    ${menu_url}
+    Go To    ${URL}/Customer
     Click Element    ${CUSTOMER_MENU}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}
+
+Navigate To Locations Menu
+    Go To    ${URL}/Location
+    Click Element    ${LOCATIONS_MENU}
+    Wait Until Element Is Visible    ${LOCATIONS_GRID}      
+
+    [Arguments]    ${customer_name}    ${city}    ${zip_code}    ${street_name}    ${street_address}
 
 *** Test Cases ***
 Navigate To Customer Menu
     Open Browser To Login Page
-    Navigate To Customer Menu    ${URL}/Customer
+    Navigate To Customer Menu
 
 Api Call Test
     Create Session    ${SESSION_NAME}    ${USER_DATA_API}
@@ -41,6 +47,7 @@ Api Call Test
     ${email}    Set Variable    ${body}[0][email]
     ${id}    Set Variable    ${body}[0][id]
 
+    Wait Until Page Contains Element    ${ADD_BUTTON}
     Click Button    ${ADD_BUTTON}
 
     Wait Until Element Is Visible    ${CUSTOMER_NAME}    timeout=10s
@@ -52,3 +59,15 @@ Api Call Test
     Click Button    ${SAVE_BUTTON}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}    timeout=10s
 	
+Fill Customer Location Form
+    Open Location Menu
+    Wait Until Page Contains Element    ${ADD_BUTTON}
+    Click Button    ${ADD_BUTTON}    # Kattintás az űrlap hozzáadás gombjára
+    Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=10s    # Várakozás az ügyfél legördülő menü megjelenésére
+    Select From List By Label    ${LOCATION_CUSTOMER_DROPDOWN}    ${customer_name}    # Ügyfél kiválasztása a legördülő menüből
+    Input Text    ${CITY}    ${city}    # Város megadása
+    Input Text    ${ZIP_CODE}    ${zip_code}    # Irányítószám megadása
+    Input Text    ${STREET_NAME}    ${street_name}    # Utcanév megadása
+    Input Text    ${STREET_ADDRESS}    ${street_address}    # Házszám megadása
+    Click Button    ${SAVE_BUTTON}    # Űrlap mentése
+    Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s    # Várakozás a telephelyek táblázat megjelenésére
