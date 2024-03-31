@@ -7,16 +7,15 @@ ${URL}    https://bwpool.azurewebsites.net/
 ${BROWSER}    Chrome
 ${EXPECTED_TITLE}    BWP Index
 ${USER_DATA_API}    https://random-data-api.com/api/users/random_user?size=1
-${SESSION_NAME}    API1 Session
-${DEVICE_DATA_API}    https://random-data-api.com/api/device/random_device?size=2
+${TOOL_DATA_API}    https://random-data-api.com/api/device/random_device?size=2
 
 *** Keywords ***
 Open Subject Website And Check the Title
     Open Browser    ${URL}    ${BROWSER}
     Title Should Be    ${EXPECTED_TITLE}
 
-Test Teardown
-    Close All Browsers
+# Test Teardown
+#     Close All Browsers
 
 # Navigate To Customer Menu
     Go To    ${URL}/Customer
@@ -28,12 +27,7 @@ Test Teardown
     Click Element    ${LOCATIONS_MENU}
     Wait Until Element Is Visible    ${LOCATIONS_GRID}      
 
-    # [Arguments]    ${customer_name}    ${city}    ${zip_code}    ${street_name}    ${street_address}
-
 *** Test Cases ***
-# Navigate To Customer Menu
-    # Open Browser To Login Page
-    # Navigate To Customer Menu
 
 Open Subject Website And Check the Title
     Open Browser    ${URL}    ${BROWSER}
@@ -41,13 +35,13 @@ Open Subject Website And Check the Title
 
 # Open Customer Menu
     Click Element    ${CUSTOMER_MENU}
-    # Sleep    5s    ${CUSTOMER_GRID}
+    Sleep    2s    ${CUSTOMER_GRID}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}
 
-# Api Call Test
-    Create Session    ${SESSION_NAME}    ${USER_DATA_API}
-    ${response}    Get On Session    ${SESSION_NAME}    ${USER_DATA_API}
-    Should Be Equal As Strings    ${response.status_code}    200
+# User Api Call Test
+    # GET Json response from URL and save the Json body into the ${body} variable
+    ${response}    GET    ${USER_DATA_API}
+    # Should Be Equal As Strings    ${response.status_code}    200
     ${body}    Set Variable    ${response.json()}
     
     Log    ${body}
@@ -61,6 +55,7 @@ Open Subject Website And Check the Title
     ${street_name}    Set Variable    ${body}[0][address][street_name]
     ${street_address}    Set Variable    ${body}[0][address][street_address]
 
+# Add New Customer
     Wait Until Element Is Enabled    ${ADD_BUTTON}    timeout=10s
     Sleep    2s
     Click Button    ${ADD_BUTTON}
@@ -71,11 +66,6 @@ Open Subject Website And Check the Title
     Input Text    ${E-MAIL_FIELD}    ${email}
     Input Text    ${COMMENT}    ${id}
 
-    # Wait Until Element Is Visible    ${CUSTOMER_MENU}
-    # Click Element    ${CUSTOMER_MENU}
-    # Sleep    2s    
-    # Wait Until Element Is Visible    ${CUSTOMER_GRID}
-
     Click Button    ${SAVE_BUTTON}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}    timeout=10s
 
@@ -83,21 +73,20 @@ Open Subject Website And Check the Title
     Open Location Menu
     Wait Until Element Is Enabled     ${ADD_BUTTON}
     Sleep    2s
-    Click Button    ${ADD_BUTTON}    # Kattintás az űrlap hozzáadás gombjára
-    Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=10s    # Várakozás az ügyfél legördülő menü megjelenésére
+    Click Button    ${ADD_BUTTON}    
+    Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=10s    
     Click Element    ${LOCATION_CUSTOMER_DROPDOWN}
-    # Select From List By Label    ${LOCATION_CUSTOMER_DROPDOWN}    ${customer_name}    # Ügyfél kiválasztása a legördülő menüből
     Input Text    ${LOCATION_CUSTOMER}    ${first_name} ${last_name}
-    Input Text    ${CITY}    ${city}    # Város megadása
-    Input Text    ${ZIP_CODE}    ${zip_code}    # Irányítószám megadása
-    Input Text    ${STREET_NAME}    ${street_name}    # Utcanév megadása
-    Input Text    ${STREET_ADDRESS}    ${street_address}    # Házszám megadása
-    Click Button    ${SAVE_BUTTON}    # Űrlap mentése
-    Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s    # Várakozás a telephelyek táblázat megjelenésére
+    Input Text    ${TOWN}    ${city}    
+    Input Text    ${ZIPCODE_LOCATOR}    ${zip_code}   
+    Input Text    ${STREET_NAME_LOCATOR}    ${street_name}    
+    Input Text    ${STREET_ADDRESS_LOCATOR}    ${street_address}    
+    Click Button    ${SAVE_BUTTON}    
+    Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s    
 
-# Device Api Call Test
-    # GET Json response from URL and save the Json body into the ${body} variable
-    ${response}    GET    https://random-data-api.com/api/device/random_device    params=size=2
+# Tool Api Call Test
+    ${response}    GET    ${TOOL_DATA_API}
+    # Should Be Equal As Strings    ${response.status_code}    200
     ${body}    Set Variable    ${response.json()}
     
     # Log the Json body out (DEBUG CONSOLE)
@@ -122,6 +111,3 @@ Open Subject Website And Check the Title
     # Extract subscription status from ${body} (it's a dictionary)
     ${serial_number}    Set Variable    ${body}[0][serial_number]
     Log    ${serial_number}
-
-Test Teardown
-    Close All Browsers
