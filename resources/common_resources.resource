@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    RequestsLibrary
-# Library    String
+Library    OperatingSystem
 
 *** Variables ***
 ${URL}    https://bwpool.azurewebsites.net/   
@@ -24,7 +24,7 @@ ${COMMENT}    //input[@id='comment']
 ${SAVE_BUTTON}    //button[@class='e-control e-btn e-lib e-control e-btn e-lib e-primary e-flat']
 ${LOCATIONS_MENU}    //a[contains(.,'Telephelyek')]
 ${LOCATIONS_GRID}    //h4[.='Telephelyek']
-${LOCATION_CUSTOMER}    //input[@class='e-control e-combobox e-lib e-input'] 
+${LOCATION_CUSTOMER}    //input[@class='e-control e-combobox e-lib e-input']   
 ${LOCATION_CUSTOMER_DROPDOWN}    //span[@class='e-input-group-icon e-ddl-icon e-icons e-ddl-disable-icon']   
 ${CITY_LOCATOR}    //input[@id='varos']
 ${ZIPCODE_LOCATOR}    //input[@id='zip']
@@ -41,9 +41,7 @@ ${COMMENT_AT_TOOL_SERIAL_NUMBER}    //textarea[@id='Comm']
 ${EXCEL_EXPORT}    //button[@aria-label='Excel Export']
 ${FILTER_FOR_LOCATION}    //input[@id='Grid_ToolbarSearchBox']
 ${SEARCH_ICON}    //span[@class='e-searchclear e-search-icon e-icons e-input-group-icon']
-${STREET_REF_URL}    //span[@class='nav-link']
-# //span[@class='oi oi-location']
-# //span[@aria-hidden='true']  
+${EXCEL_DOWNLOAD_PATH}    C:\Users\Andi\Downloads    
 
 *** Keywords ***
 
@@ -67,18 +65,6 @@ Open Location Menu
     Click Element    ${LOCATIONS_MENU}
     # Sleep    5s    ${LOCATIONS_GRID}
     Wait Until Element Is Visible    ${LOCATIONS_GRID}
-
-Api Call Test
-    ${response}    GET    ${USER_DATA_API}
-    # Should Be Equal As Strings    ${response.status_code}    200
-    ${body}    Set Variable    ${response.json()}
-    
-    Log    ${body}
-
-    ${first_name}    Set Variable    ${body}[0][first_name]
-    ${last_name}    Set Variable    ${body}[0][last_name]
-    ${email}    Set Variable    ${body}[0][email]
-    ${id}    Set Variable    ${body}[0][id]
 
 Record User Data
     Open Customer Menu

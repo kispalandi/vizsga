@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    ../resources/common_resources.resource
-Library    OperatingSystem
 
 *** Variables ***
 ${URL}    https://bwpool.azurewebsites.net/   
@@ -27,9 +26,11 @@ Open Subject Website And Check the Title
 
 # Open Customer Menu
     Wait Until Element Is Enabled    ${CUSTOMER_MENU}    timeout=10s
+    Sleep    2s
     Click Element    ${CUSTOMER_MENU}
     Sleep    2s    ${CUSTOMER_GRID}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}
+    Capture Page Screenshot
 
 # User Api Call Test
     # GET Json response from URL and save the Json body into the ${body} variable
@@ -61,9 +62,10 @@ Open Subject Website And Check the Title
 
     Click Button    ${SAVE_BUTTON}
     Wait Until Element Is Visible    ${CUSTOMER_GRID}    timeout=10s
+    Capture Page Screenshot
 
 # Fill Customer Location Form
-
+    Open Location Menu
     Wait Until Element Is Enabled     ${ADD_BUTTON}
     Sleep    2s
     Click Button    ${ADD_BUTTON}
@@ -77,7 +79,9 @@ Open Subject Website And Check the Title
     Input Text    ${STREET_NAME_LOCATOR}    ${street_name}    
     Input Text    ${STREET_ADDRESS_LOCATOR}    ${street_address}    
     Click Button    ${SAVE_BUTTON}    
-    Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s    
+    Sleep    2s
+    Wait Until Element Is Visible    ${LOCATIONS_GRID}    timeout=10s
+    Capture Page Screenshot
 
 # Tool Api Call Test
     ${response}    GET    ${TOOL_DATA_API}
@@ -101,41 +105,42 @@ Open Subject Website And Check the Title
         
         Wait Until Element Is Visible    ${MANUFACTORERS_NAME}    timeout=10s
         Input Text    ${MANUFACTORERS_NAME}    ${manufacturer} ${model}
-        Sleep    2s
         Input Text    ${CUSTOMER_FIELD}    ${first_name} ${last_name}
-        Sleep    2s
         Input Text    ${LOCATION_FIELD}    ${zip_code} ${city} ${street_name} ${street_address}
-        Sleep    2s
         Input Text    ${DESCRIPTION_PLATFORM}    ${platform}
-        Sleep    2s
         Input Text    ${COMMENT_AT_TOOL_SERIAL_NUMBER}    ${serial_number}
         Sleep    2s  
         Click Button    ${SAVE_BUTTON}    
-        Wait Until Element Is Visible    ${TOOLS_GRID}    timeout=10s  
+        Wait Until Element Is Visible    ${TOOLS_GRID}    timeout=10s
+        Capture Page Screenshot
     END
   
 # Excel Export
-    Wait Until Element Is Enabled    ${EXCEL_EXPORT}
-    Sleep    2s
     Click Button    ${EXCEL_EXPORT}
+        ${download}    Run Keyword And Return Status    File Should Exist    ${EXCEL_DOWNLOAD_PATH}Export.*
+        IF  "${download}" == "${False}"
+           log    "check download path is correct"    WARN
+        Capture Page Screenshot
+        END
         
 # Navigate To Locations Menu
     Go To    ${URL}/Location
     Click Element    ${LOCATIONS_MENU}
     Wait Until Element Is Visible    ${LOCATIONS_GRID}
+    Capture Page Screenshot
 
 # Filter For Recorded Location
-    Wait Until Page Does Not Contain    ${FILTER_FOR_LOCATION}    timeout=5s
+    Wait Until Page Contains    ${FILTER_FOR_LOCATION}    timeout=20s
     Sleep    2s
     Input Text    ${FILTER_FOR_LOCATION}    ${city}
     Click Element    ${SEARCH_ICON}
     Sleep    2s
-    # Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=5s   
-    # Sleep    2s
-
+    Wait Until Element Is Visible    ${LOCATION_CUSTOMER}    timeout=10s
+    Capture Page Screenshot 
+    
 # Click On Street URL
-    Click Element    ${STREET_REF_URL}
-    Sleep    2s
-
+    Click Link    //a[contains(.,"${street_name}")]
+    Capture Page Screenshot
+   
 Test Teardown
     Close All Browsers
